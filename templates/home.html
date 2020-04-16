@@ -1,0 +1,144 @@
+{%  extends 'base.html' %}
+
+{% block extracss %} 
+   <!-- Custom styles for this template -->
+   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link rel="stylesheet" href="{{  url_for('static', filename='css/blog.css')  }}"  type="text/css"/>
+
+{% endblock %}
+{% block content %}
+
+
+
+      <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark" style="background-image:url('{{ url_for('static' , filename='img/bg.jpeg' ) }}'); background-size:cover;">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic">Desire</h1>
+          <p class="lead my-3">“A true teacher would never tell you what to do. But he would give you the knowledge with which you could decide what would be best for you to do.”</p>
+          <p class="lead mb-0"><a href="#" class="text-white font-weight-bold">― Christopher Pike, Sati...</a></p>
+        </div>
+      </div>
+
+      <div id="desktop" class="row mb-2" style="padding-bottom: 200px;">
+
+
+{% for items in books %}
+        <div class="col-md-6  " >
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+            <img class="card-img-right flex-auto  d-md-block"  src="{{items.picture}}" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+         
+            <div class="card-body d-flex flex-column align-items-start">
+              <strong class="d-inline-block mb-2 text-primary">{{ items.genre }}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" href="/single/{{items.id}}">{{items.title}}</a>
+              </h3>
+              <div class="mb-1 text-muted">{{items.dateadded.date()}}</div>
+              <p class="card-text mb-auto">{{items.review | truncate(150, True)   }}.</p>
+              <a href="/single/{{items.id}}">Continue reading</a>
+            </div>
+          </div>
+        </div>
+{% endfor %}
+      
+
+      </div>
+    </div>
+
+    <div id="mobile" class="row row-cols-2" style="margin:auto;">
+
+
+      {% for items in books %}
+      <div class="col " style="padding-top:10px; margin:0px; background:#F1F1F1 ;" >  <div class="card flex-md-row mb-4 box-shadow h-md-250">
+        <img class="card-img-right flex-auto  d-md-block" style="width:100%;" src="{{items.picture}}" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+     
+        <div class="card-body d-flex flex-column align-items-start" style="height:100px;">
+    
+          <h6 class="mb-0">
+            <a class="text-dark" href="/single/{{items.id}}">{{items.title}}</a>
+          </h6>
+      
+          <a href="/single/{{items.id}}">View Book</a>
+        </div>
+      </div></div>
+    
+    {% endfor %}
+    
+    
+    </div>
+
+    
+    <main role="main" class="container">
+
+    </main><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+{% endblock %}
+
+{% block extrajs %} 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="{{  url_for('static', filename='js/j.js') }}"></script>
+<script src="{{  url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/holder.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/mcx-dialog.js')  }}"  ></script>
+<script>
+  if(localStorage.getItem('new')){
+
+  }else{
+    alert('Welcome to Desire App. If On Mobile Please Swipe horizontally(left or right) at the categories Menu to see More Categories. Thank You');
+    localStorage.setItem('new','1');
+  }
+
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+
+  <script>
+
+$(document).ready(function() {
+        if($(window).width()<436){
+
+
+          $('#desktop').hide();
+      $('#mobile').show();
+      
+        }
+
+      if($(window).width()>436){
+
+        $('#desktop').show();
+      $('#mobile').hide();
+
+      }
+ });
+
+
+
+ setInterval(function(){
+  if($(window).width()<436){
+
+
+$('#desktop').hide();
+$('#mobile').show();
+
+}
+
+if($(window).width()>436){
+
+$('#desktop').show();
+$('#mobile').hide();
+
+}
+
+
+ },500)
+  </script>
+
+{% endblock %}

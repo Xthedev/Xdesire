@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="{{  url_for('static', filename='css/bootstrap.min.css')  }}"  type="text/css"/>
+ <link rel="stylesheet" href="{{  url_for('static', filename='css/dialog-mobile.css')  }}"  type="text/css"/>
+
+ {% block extracss %}  {% endblock %}
+    <title>{% block title  %}   {% endblock %}</title>
+</head>
+<body>
+
+<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">XDesire</a>
+    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="javascript:void"  onclick="getout()">Sign out</a>
+      </li>
+    </ul>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <nav class="col-md-2 d-none d-md-block bg-light sidebar">
+        <div class="sidebar-sticky">
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link active" href="/dashboard">
+                <span data-feather="home"></span>
+                Dashboard <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/adminbooks">
+                <span data-feather="file"></span>
+                Books
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/purchases">
+                <span data-feather="shopping-cart"></span>
+                Purchases
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/users">
+                <span data-feather="users"></span>
+                Users
+              </a>
+            </li>
+            <li id="admins" class="nav-item">
+              <a class="nav-link" href="/admins">
+                <span data-feather="bar-chart-2"></span>
+                Admins
+              </a>
+            </li>
+            <script>
+if(sessionStorage.getItem('who')==='admin'){
+
+}else{
+document.getElementById('admins').style.display="none";
+}
+
+            </script>
+            <li class="nav-item">
+              <a class="nav-link" href="/messages">
+                <span data-feather="layers"></span>
+                Messages
+              </a>
+            </li>
+          </ul>
+  
+          <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
+            <span>Actions</span>
+            <a class="d-flex align-items-center text-muted" href="#" aria-label="Add a new report">
+              <span data-feather="plus-circle"></span>
+            </a>
+          </h6>
+          <ul class="nav flex-column mb-2">
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void"  onclick="getout()">
+                <span data-feather="file-text"></span>
+               Logout
+              </a>
+
+              <script>
+var _0x3983=['clear','assign','/admin'];(function(_0x474f8a,_0x398353){var _0x3f11f5=function(_0x12fa7b){while(--_0x12fa7b){_0x474f8a['push'](_0x474f8a['shift']());}};_0x3f11f5(++_0x398353);}(_0x3983,0x18f));var _0x3f11=function(_0x474f8a,_0x398353){_0x474f8a=_0x474f8a-0x0;var _0x3f11f5=_0x3983[_0x474f8a];return _0x3f11f5;};function getout(){sessionStorage[_0x3f11('0x0')]();location[_0x3f11('0x1')](_0x3f11('0x2'));}
+              </script>
+            <!-- </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Last quarter
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+               Download DB 
+              </a>
+            </li> -->
+            <!-- <li class="nav-item">
+              <a class="nav-link" href="#">
+                <span data-feather="file-text"></span>
+                Year-end sale
+              </a>
+            </li> -->
+          </ul>
+        </div>
+      </nav>
+    {% block content %}
+
+    {% endblock %}
+
+
+
+
+
+</div>
+</div>
+    <script src="static/js/jquery-3.4.1.slim.min.js"></script>
+<script>
+if(sessionStorage.getItem('logged')){
+
+}else{
+    location.assign('/admin');
+}
+
+</script>
+    <script src="{{  url_for('static', filename='js/bootstrap.bundle.min.js')  }}"  ></script>
+    <script src="{{  url_for('static', filename='js/mcx-dialog.js')  }}"  ></script>
+
+  
+    {% block extrajs %}  {% endblock %}
+    
+</body>
+</html>

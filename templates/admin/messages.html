@@ -1,0 +1,59 @@
+{%  extends 'admin/navbar.html' %}
+
+{% block extracss %}  <link rel="stylesheet" href="{{  url_for('static', filename='css/dashboard.css')  }}"  type="text/css"/>
+{% endblock %}
+{% block content %}
+   
+  
+      
+          <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+              <h1 class="h2">Messages</h1>
+              <div class="btn-toolbar mb-2 mb-md-0">
+                <div class="btn-group mr-2">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+                </div>
+                <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                  <span data-feather="calendar"></span>
+                  This week
+                </button>
+              </div>
+            </div>
+            <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">Fullname</th>
+                    <th scope="col">Message</th>
+                   
+                    <th scope="col">Date</th>
+                    <th scope="col">Delete</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for item in messages %}
+                  <tr>
+                    <th scope="row">{{ loop.index }}</th>
+                    <td>{{ item.email }}</td>
+                    <td>{{ item.fullname }}</td>
+                    <td>{{item.message}}</td>
+                    <td>{{item.dateadded.date()}}</td>
+                   <td>  <a href="/delmessages/{{item.id}}"  class="btn btn-danger">Delete</a> </td>
+                  </tr>
+
+                  {% endfor %}
+                </tbody>
+              </table>
+          </main>
+
+
+
+      {% endblock %}
+
+    {% block extrajs %} 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="static/js/dashboard.js"></script>
+    {% endblock %}

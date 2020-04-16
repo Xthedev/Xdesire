@@ -1,0 +1,76 @@
+{%  extends 'admin/base.html' %}
+
+
+{% block extracss %}  <link rel="stylesheet" href="{{  url_for('static', filename='css/signin.css')  }}"  type="text/css"/>
+
+{% endblock  %}
+{% block content %}
+<body class="text-center">
+  <form  class="form-signin" >
+<img class="mb-4" src="static/logo.png" alt="" width="100">
+<h1 class="h3 mb-3 font-weight-normal">Please Register</h1>
+<label for="inputEmail" class="sr-only">Email</label>
+<input type="email" id="inputEmail" name="email"  class="form-control" placeholder="Email Address" required autofocus>
+<br>
+<label for="inputPassword" class="sr-only">Password</label>
+<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+
+<label for="inputEmail" class="sr-only">Fullname</label>
+<input type="text" id="inputEmail" name="fullname"  class="form-control" placeholder="Fullname" required autofocus>
+<br>
+<label for="inputEmail" class="sr-only">Mobile</label>
+<input type="text" id="inputEmail" name="mobile"  class="form-control" placeholder="Mobile" required autofocus>
+<br>
+<label for="inputEmail" class="sr-only">Likes</label>
+<input type="text" id="inputEmail" name="likes"  class="form-control" placeholder="Likes" required autofocus>
+<br>
+<div class="checkbox mb-3">
+  <label>
+      
+    <input type="checkbox" value="remember-me"> Remember me
+  </label>
+</div>
+<button onclick="register()" class="btn btn-lg btn-primary btn-block" type="button">Sign Up</button>
+<p class="mt-5 mb-3 text-muted">Clikc Here To Login? <a href="/">Click Here</a></p>
+
+</form>
+{% endblock %}
+
+
+{% block extrajs %} 
+<script src="{{url_for('static' , filename='js/jquery.js')}}">
+
+</script>
+<script>
+function register(){
+
+  $.post('/adduser',{
+    email: document.querySelector('input[name="email"]').value,
+    fullname: document.querySelector('input[name="fullname"]').value,
+    mobile: document.querySelector('input[name="mobile"]').value,
+    likes: document.querySelector('input[name="likes"]').value,
+    password: document.querySelector('input[name="password"]').value
+
+  },function(data){
+    if(data.error === true){
+
+      mcxDialog.alert(data.message);
+    }else{
+      localStorage.setItem('email',document.querySelector('input[name="email"]').value)
+      sessionStorage.setItem('logged','true');
+      sessionStorage.setItem('email',document.querySelector('input[name="email"]').value);
+      sessionStorage.setItem('fullname',document.querySelector('input[name="fullname"]').value);
+      sessionStorage.setItem('mobile',document.querySelector('input[name="mobile"]').value);
+     
+      mcxDialog.alert(data.message);
+      location.assign('/home')
+          }
+
+  })
+
+
+}
+</script>
+
+{% endblock %}
+

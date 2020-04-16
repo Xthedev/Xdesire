@@ -1,0 +1,76 @@
+{%  extends 'admin/base.html' %}
+
+
+{% block extracss %} 
+ <link rel="stylesheet" href="{{  url_for('static', filename='css/signin.css')  }}"  type="text/css"/>
+<script>
+
+if(localStorage.getItem('email')){
+  sessionStorage.setItem('email',localStorage.getItem('email'))
+
+    location.assign('/home')
+  
+}
+
+</script>
+{% endblock  %}
+{% block content %}
+<body class="text-center">
+  <form  class="form-signin">
+<img class="mb-4" src="static/logo.png" alt="" width="100">
+<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+<label for="inputEmail" class="sr-only">Username</label>
+<input type="email" id="inputEmail" name="email"  class="form-control" placeholder="Email Address" required autofocus>
+<br>
+<label for="inputPassword" class="sr-only">Password</label>
+<input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" required>
+<div class="checkbox mb-3">
+  <label>
+    <input type="checkbox" value="remember-me"> Remember me
+  </label>
+</div>
+<button onclick="logmein()" class="btn btn-lg btn-primary btn-block" type="button">Sign in</button>
+<p class="mt-5 mb-3 text-muted">Not Yet Registered ? <a href="/register">Click Here</a></p>
+</form>
+{% endblock %}
+
+
+{% block extrajs %} 
+<script src="{{url_for('static' , filename='js/jquery.js')}}">
+
+</script>
+<script>
+    function logmein(){
+    
+      $.post('/logmein',{
+        email: document.querySelector('input[name="email"]').value,
+        password: document.querySelector('input[name="password"]').value,
+      },function(data){
+        if(data.error === true){
+    
+          mcxDialog.alert(data.message);
+        }else{
+          sessionStorage.setItem('email',document.querySelector('input[name="email"]').value)
+
+          if($(window).width()<436){
+
+
+          localStorage.setItem('email',document.querySelector('input[name="email"]').value)
+
+
+          }
+
+
+          sessionStorage.setItem('logged','true');
+          mcxDialog.alert(data.message);
+          location.assign('/home')
+              }
+    
+      })
+    
+    
+    }
+</script>
+
+{% endblock %}
+

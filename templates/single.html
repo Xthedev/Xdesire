@@ -1,0 +1,87 @@
+{%  extends 'base.html' %}
+
+{% block extracss %} 
+   <!-- Custom styles for this template -->
+   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link rel="stylesheet" href="{{  url_for('static', filename='css/blog.css')  }}"  type="text/css"/>
+{% endblock %}
+{% block content %}
+
+
+
+        <div class="col-md-12" style="margin-top: 50px; padding-bottom: 150px;">
+         
+         
+            <div class="card flex-md-row mb-4 box-shadow h-md-250">
+              <img class="card-img-right flex-auto d-md-block"  src="{{books.picture}}" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
+          
+            <div class="card-body d-flex flex-column align-items-start" >
+              <strong class="d-inline-block mb-2 text-primary">{{ books.genre }}</strong>
+              <h3 class="mb-0">
+                <a class="text-dark" id="bookname" href="#">{{books.title}}</a>
+              </h3>
+              <div class="mb-1 text-muted">{{books.dateadded.date()}}</div>
+              <p class="card-text mb-auto">{{books.review   }}.</p>
+            
+     </div>
+         </div>
+
+          <div class="card flex-md-row mb-4 box-shadow h-md-250">
+          <div class="card-body d-flex flex-column align-items-start" >
+            <strong class="d-inline-block mb-2 text-primary">Payment Information</strong>
+         
+           
+            <p class="card-text mb-auto">Simply Click On The Buy Book  Button and Make Payment, 
+                the chosen book and receipt will be sent to your email almost immediately.
+                Payment on this platform is secured by paystack.<br>
+          </p>
+          <table>
+            <thead>
+
+              <tr><th>Email Address: </th> <th>austinchibuike1@gmail.com</th></tr>
+            </thead>
+          </table>
+<h1>
+  ₦<span>200</span>
+</h1>      
+            <button type="button" class="btn btn-primary" onclick="payWithPaystack()">BUY BOOK</button>
+            <div id="paystackEmbedContainer"></div>
+        
+<script src="{{url_for('static' , filename='bluenavbar.js')}}">
+</script>
+          </div>
+       </div>
+        </div></div>
+
+      </div>
+    </div>
+
+    <main role="main" class="container">
+
+    </main><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+{% endblock %}
+
+{% block extrajs %} 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="{{  url_for('static', filename='js/j.js') }}"></script>
+<script src="{{  url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/holder.min.js') }}"></script>
+<script>
+
+
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+
+{% endblock %}

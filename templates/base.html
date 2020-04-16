@@ -1,0 +1,99 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <link rel="stylesheet" href="{{  url_for('static', filename='css/bootstrap.min.css')  }}"  type="text/css"/>
+ <link rel="stylesheet" href="{{  url_for('static', filename='css/dialog-mobile.css')  }}"  type="text/css"/>
+ <script src="{{  url_for('static', filename='js/j.js') }}"></script>
+ <script src="https://js.paystack.co/v1/inline.js"></script>
+ {% block extracss %}  {% endblock %}
+    <title>{% block title  %}   {% endblock %}</title>
+<script>
+if(sessionStorage.getItem('email')){
+
+}else{
+location.assign('/')
+}
+
+</script>
+
+ 
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <a class="navbar-brand" style="color:white;" href="#" id="name"></a>
+      <script>
+        $('#name').html(sessionStorage.getItem('email'))
+      </script>
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item active"><form action="/mymessages" method="POST" style="display: inline;">
+          <button  style=" color:white;border:0px; " id="msgss" class="nav-link btn-primary" name="email"  style="color:white;">Profile & Book Requests <span class="sr-only">(current)</span></button>
+        </form> </li> 
+ 
+   <script>
+$('#msgss').val(localStorage.getItem('email'))
+
+   </script>
+      </ul>
+      <form action="/search" method="POST" class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search By Book Name" aria-label="Search">
+        <button class="btn btn-dark my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+        <div class="container">
+          <header class="blog-header py-3">
+            <div class="row flex-nowrap justify-content-between align-items-center">
+              <div class="col-4 pt-1">
+             <a class="text-muted" href="/home">Home</a> 
+              </div>
+              <div class="col-4 text-center">
+                <!-- Change The in the ahref-->
+                <a class="blog-header-logo text-dark" href="#">Desire</a>
+              </div>
+              <div class="col-4 d-flex justify-content-end align-items-center">
+                <!-- <a class="text-muted" href="#" >
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mx-3"><circle cx="10.5" cy="10.5" r="7.5"></circle><line x1="21" y1="21" x2="15.8" y2="15.8"></line></svg>
+                </a> -->
+                <!-- <a class="btn btn-sm btn-outline-secondary" href="#">Sign up</a> -->
+              </div>
+            </div>
+          </header>
+    
+          <div class="nav-scroller py-1 mb-2">
+            <nav class="nav d-flex justify-content-between">
+              <a class="p-2 text-muted" href="/drama">Drama & Romance</a>
+              <a class="p-2 text-muted" href="/fiction">Fiction & Horror</a>
+              <a class="p-2 text-muted" href="/christian">Christian Books</a>
+              <a class="p-2 text-muted" href="/motivational">Motivational Books</a>
+              <a class="p-2 text-muted" href="/business">Business & Growth Strategy</a>
+              <a class="p-2 text-muted" href="/software">Software & Technology</a>
+           
+            </nav>
+          </div>
+
+
+    {% block content %}
+
+    {% endblock %}
+    <script src="{{  url_for('static', filename='js/jquery-3.4.1.slim.min.js') }}"></script>
+
+    <script src="{{  url_for('static', filename='js/bootstrap.bundle.min.js')  }}"  ></script>
+    <script src="{{  url_for('static', filename='js/mcx-dialog.js')  }}"  ></script>
+
+    {% block extrajs %}  {% endblock %}
+    </div>
+
+    <footer class="blog-footer">
+      <p>Desire Book Store   by <a href="https://javatek.com.ng">X</a>.</p>
+      <p>
+        <a href="#" style="color:black;">A Javatek Africa   Concept</a>
+      </p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,150 @@
+{%  extends 'base.html' %}
+
+{% block extracss %} 
+   <!-- Custom styles for this template -->
+   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+<link rel="stylesheet" href="{{  url_for('static', filename='css/blog.css')  }}"  type="text/css"/>
+<link rel="stylesheet" href="{{  url_for('static', filename='css/dialog-mobile.css')  }}"  type="text/css"/>
+
+{% endblock %}
+{% block content %}
+
+
+
+    <main role="main" class="container">
+
+        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded shadow-sm">
+           <div class="lh-100">
+              <h6 class="mb-0 text-dark lh-100">Edit Your Profile Or Scroll Down to Send A Book Request Below.</h6>
+              <small>Since 2011</small>
+            </div>
+          </div>
+        
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+              
+            <h6 class="border-bottom border-gray pb-2 mb-0">My Details</h6>
+            <form action="/updateuserdetails" method="POST">
+            <div class="media text-muted pt-3">
+              <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@email</strong>
+                <input type="email" class="form-control" name="email" value="{{users.email}}" />
+                
+              </p>
+            </div>
+
+            <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"/><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@password</strong>
+                  <input type="password" class="form-control" name="password" value="{{users.password}}" />
+                
+                </p>
+              </div>
+              
+            <div class="media text-muted pt-3">
+              <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#e83e8c"/><text x="50%" y="50%" fill="#e83e8c" dy=".3em">32x32</text></svg>
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@mobile</strong>
+                <input type="text" class="form-control" name="mobile" value="{{users.mobile}}" />
+              
+              </p>
+            </div>
+            <div class="media text-muted pt-3">
+              <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"/><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">@fullname</strong>
+                <input type="text" class="form-control" name="fullname" value="{{users.fullname}}" />
+                           </p>
+            </div>
+            <div class="media text-muted pt-3">
+                <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#6f42c1"/><text x="50%" y="50%" fill="#6f42c1" dy=".3em">32x32</text></svg>
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                  <strong class="d-block text-gray-dark">@likes</strong>
+                  <input type="text" class="form-control" name="likes" value="{{users.likes}}" />
+                             </p>
+              </div>
+            <small class="d-block text-right mt-3">
+              <button type="submit" class="btn btn-primary" name="id" value="{{users.id}}">UPDATE PROFILE</button>
+            </small>
+          </div>
+        </form>
+          <div class="my-3 p-3 bg-white rounded shadow-sm">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Make A Book Request</h6>
+            <div class="media text-muted pt-3">
+              <svg class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32"><title>Placeholder</title><rect width="100%" height="100%" fill="#007bff"/><text x="50%" y="50%" fill="#007bff" dy=".3em">32x32</text></svg>
+              <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <div class="d-flex justify-content-between align-items-center w-100">
+                  <strong class="text-gray-dark">Message</strong>
+                  <a href="#">Follow</a>
+                </div>
+                <span class="d-block">Make A Request, We May Have your Book In Store . Due to The Fact we Have a Drive of 3Terabytes worth of books, We cannot Upload all our books at once on this platform. So Requests help us tailor your needs.</span>
+             <br>
+            <textarea id="txtss" name="message" class="form-control" style="height:150px; padding-left:0px;" >
+               Clear This Text and Write Message Here.
+            </textarea>
+            <br>
+            
+            <button class="btn btn-primary" id="mybtsss" type="button">SEND</button>
+       
+            <div id="here" style="color:limegreen"></div>
+            <div id="there" style="color:red"></div>
+            </div>
+            </div>
+            
+            <small class="d-block text-right mt-3">
+              <!-- <a href="#">All suggestions</a> -->
+            </small>
+          </div>
+    </main><!-- /.container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+{% endblock %}
+
+{% block extrajs %} 
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
+<script src="{{  url_for('static', filename='js/j.js') }}"></script>
+<script src="{{  url_for('static', filename='js/popper.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/bootstrap.min.js') }}"></script>
+<script src="{{  url_for('static', filename='js/holder.min.js') }}"></script>
+<script>
+
+
+    Holder.addTheme('thumb', {
+      bg: '#55595c',
+      fg: '#eceeef',
+      text: 'Thumbnail'
+    });
+  </script>
+
+<script>
+$('#mybtsss').click(function(){
+
+
+    $.post('/sendmessage',
+   {
+email:'{{users.email}}',
+fullname:'{{users.fullname}}',
+message:document.getElementById('txtss').value
+   },function(data){
+       if(data.error===false){
+        $('#here').html(data.message);
+        $('#txtsss').val('')
+       }else{
+        $('#there').html(data.message);
+       }
+    
+
+   })
+
+
+
+})
+
+</script>
+{% endblock %}
